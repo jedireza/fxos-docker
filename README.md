@@ -100,9 +100,9 @@ I found one way of fixing this [with this StackOverflow answer][8].
 
 ## Build container
 
-The `fxos-docker` image is our build container. We'll be using it to configure,
-build and run tests. It's based on the Ubuntu Trusty (14.04) image with [build
-prerequisites installed][4].
+The `jedireza/fxos` Docker image is our build environment. We'll use it to
+configure B2G, build B2G and run Gaia tests. It's based on the Ubuntu Trusty
+(14.04) image with [build prerequisites installed][4].
 
 [4]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Firefox_OS_build_prerequisites
 
@@ -151,7 +151,7 @@ In this example we're configuring for an Aries (Sony Z3C) device.
 ```bash
 root@hostbox:/# cd /B2G
 root@hostbox:/B2G# ./config.sh aries
-# expect lots of output
+# ... lots of output ... #
 ```
 
 Note: Depending on your internet connection, the configuration step takes a
