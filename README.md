@@ -83,6 +83,20 @@ $ adb start-server
 * daemon started successfully *
 ```
 
+It's ideal to run `adb` without using sudo. One reason is because WebIDE's ADB
+Helper Add-on will start a server if there isn't one running and it can't use
+`sudo`.  A symptom I've seen with incorrect adb permissions is:
+
+```bash
+$ adb devices
+List of devices attached 
+????????????    no permissions
+```
+
+I found one way of fixing this [with this StackOverflow answer][8].
+
+[8]: http://stackoverflow.com/a/12664045
+
 
 ## Build container
 
