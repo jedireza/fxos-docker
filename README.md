@@ -38,7 +38,7 @@ $ cd B2G
 Next we can add an `upstream` remote:
 
 ```bash
-$ git remote add upstream https://github.com/mozilla-b2g/B2G
+$ git remote add upstream git@github.com:mozilla-b2g/B2G.git
 ```
 
 ### Fetching the Gaia code
@@ -58,7 +58,7 @@ $ cd gaia
 Next we can add an `upstream` remote:
 
 ```bash
-$ git remote add upstream https://github.com/mozilla-b2g/gaia
+$ git remote add upstream git@github.com:mozilla-b2g/gaia.git
 ```
 
 ### Install `adb` and `fastboot`
