@@ -198,8 +198,11 @@ Working with Gaia is usually easier than building the entire B2G stack.
 
 ### Running integration tests
 
-Running integration tests inside the container requires us to use `xvfb` as a
-display server. So you won't actually see a browser running the tests.
+Because running integration tests requires a display. When our container is run
+it automatically starts up `xvfb` (a display server) and binds it to `:10`
+(display 10) and creates the environment variable `DISPLAY=10` (used by the
+firefox/mulet binary). Note: You won't actually see a browser running the
+tests, `xvfb` is a in memory display server.
 
 You can run integration tests like this:
 
@@ -223,3 +226,11 @@ mozApps
 
 1 passing (16s)
 ```
+
+For more details see the official MDN docs for ["Gaia Integration tests"][9].
+
+[9]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_integration_tests
+
+### Running unit tests
+
+...
