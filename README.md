@@ -61,6 +61,15 @@ Next we can add an `upstream` remote:
 $ git remote add upstream https://github.com/mozilla-b2g/gaia
 ```
 
+### Install `adb` and `fastboot`
+
+Many aspects of FxOS development require using `adb` (Android Debug Bridge) and
+`fastboot`.
+
+```bash
+$ sudo apt-get install android-tools-adb android-tools-fastboot
+```
+
 ### `adb` server
 
 Your host machine is also where you should run the `adb` server. This is often
@@ -171,4 +180,6 @@ mobile device"][7].
 
 ## Working with Gaia
 
-...
+Working with Gaia is usually easier than building the entire B2G stack.
+
+
