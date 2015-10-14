@@ -2,6 +2,37 @@
 
 A development environment for FxOS.
 
+ - [On Docker Hub](#on-docker-hub)
+ - [Host machine](#host-machine)
+   - [Install `git`](#install-git)
+   - [Fetching the B2G code](#fetching-the-b2g-code)
+   - [Fetching the Gaia code](#fetching-the-gaia-code)
+   - [Install `adb` and `fastboot`](#install-adb-and-fastboot)
+   - [`adb` server](#adb-server)
+ - [Development container](#development-container)
+   - [Interacting](#interacting)
+ - [Working with B2G](#working-with-b2g)
+   - [Configure your target](#configure-your-target)
+   - [Time to build](#time-to-build)
+   - [Flash your device](#flash-your-device)
+ - [Working with Gaia](#working-with-gaia)
+   - [Running integration tests](#running-integration-tests)
+   - [Running unit tests](#running-unit-tests)
+     - [The prep work](#the-prep-work)
+     - [Multiple ways to run](#multiple-ways-to-run)
+   - [Running UI tests](#running-ui-tests)
+
+
+## On Docker Hub
+
+You can find the [`jedireza/fxos`][11] image on the Docker Hub. And you can pull it via:
+
+[11]: https://hub.docker.com/r/jedireza/fxos/
+
+```bash
+$ docker pull jedireza/fxos
+```
+
 
 ## Host machine
 
@@ -93,12 +124,12 @@ List of devices attached
 ????????????    no permissions
 ```
 
-I found one way of fixing this [with this StackOverflow answer][8].
+I found one way of fixing this [by following this StackOverflow answer][8].
 
 [8]: http://stackoverflow.com/a/12664045
 
 
-## Build container
+## Development container
 
 The `jedireza/fxos` Docker image is our build environment. We'll use it to
 configure B2G, build B2G and run Gaia tests. It's based on the Ubuntu Trusty
@@ -260,7 +291,10 @@ root@hostbox:/gaia# ./bin/gaia-test &
 ```
 
 Notice how we sent this process into the background by ending the command with
-`&`. This allows us to still enter more commands but still see the output.
+`&`. This allows us to still enter more commands but still see the output. If
+you're not familiar with these concepts search for [manage jobs in linux][13].
+
+[13]: https://www.google.com/search?q=manage+jobs+in+linux
 
 #### Multiple ways to run
 
