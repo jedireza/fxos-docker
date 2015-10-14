@@ -151,7 +151,7 @@ In this example we're configuring for an Aries (Sony Z3C) device.
 ```bash
 root@hostbox:/# cd /B2G
 root@hostbox:/B2G# ./config.sh aries
-# ... lots of output ... #
+# ... truncated output ... #
 ```
 
 Note: Depending on your internet connection, the configuration step takes a
@@ -201,8 +201,8 @@ Working with Gaia is usually easier than building the entire B2G stack.
 Because running integration tests requires a display. When our container is run
 it automatically starts up `xvfb` (a display server) and binds it to `:10`
 (display 10) and creates the environment variable `DISPLAY=10` (used by the
-firefox/mulet binary). Note: You won't actually see a browser running the
-tests, `xvfb` is a in memory display server.
+Firefox binary). Note: You won't actually see a browser running the tests,
+`xvfb` is like an in-memory display.
 
 You can run integration tests like this:
 
@@ -217,7 +217,7 @@ this:
 ```bash
 root@hostbox:/gaia# TEST_FILES="apps/system/test/marionette/apps_test.js" make test-integration
 
-# ... lots of output ... #
+# ... truncated output ... #
 
 mozApps
   getSelf
@@ -233,4 +233,81 @@ For more details see the official MDN docs for ["Gaia Integration tests"][9].
 
 ### Running unit tests
 
-...
+#### The prep work
+
+Running integration tests will have automatically installed a local copy of the
+Firefox (aka Mulet) binary in the `/gaia/firefox` directory. If you haven't run
+integration tests you can get a copy of mulet by running:
+
+```bash
+root@hostbox:/gaia# make mulet
+# ... truncated output ... #
+```
+
+Once you have a local Firefox binary you need to export an environment variable
+pointing to it:
+
+```bash
+root@hostbox:/gaia# export FIREFOX=/gaia/firefox/firefox
+```
+
+Running unit tests requires a test server to be running and an instance of the
+Firefox binary to be started, this can be done by running:
+
+```bash
+root@hostbox:/gaia# ./bin/gaia-test &
+# ... truncated output ... #
+```
+
+Notice how we sent this process into the background by ending the command with
+`&`. This allows us to still enter more commands but still see the output.
+
+#### Multiple ways to run
+
+Now that we have our test server running there are a couple ways we can run
+tests.
+
+Tests will automatically run when you save a file. For example when I save
+changes to '/gaia/apps/clock/js/alarm.js' I'll see output from the test server
+similar to this:
+
+```bash
+root@hostbox:/gaia# Running tests: [ '/clock/test/unit/alarm_test.js' ]
+# ... truncated output ... #
+[clock-test/unit/alarm_test.js] Alarm Test
+[Clock] =====================================
+
+[Clock] Alarm Debug: {"now":"2015-10-14T07:41:20.699Z","tz":0}
+    [clock-test/unit/alarm_test.js] Date handling
+[Clock] ======= Remaining mozAlarms: ========
+
+[Clock] mozAlarm API invariant failure?
+[Clock] -------------------------------------
+
+      ✓ [clock-test/unit/alarm_test.js] basic properties and serialization
+
+  1 passing (188ms)
+```
+
+Another way to run tests is by running then manually. Although it will take a
+while, you can run all the unit tests like this:
+
+```bash
+root@hostbox:/gaia# make test-agent-test
+# ... truncated output ... #
+```
+
+You can limit the scope of the tests to run by app like this:
+
+```bash
+root@hostbox:/gaia# APP=calendar make test-agent-test
+# ... truncated output ... #
+```
+
+For more details see the official MDN docs for ["Gaia unit tests"][10].
+
+[10]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_unit_tests
+
+### Running UI tests
+
+Coming soon.
