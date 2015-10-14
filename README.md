@@ -52,7 +52,7 @@ Then we clone our fork. (This will take a long time.)
 ```bash
 $ cd ~/projects/
 $ git clone git://github.com/<username>/gaia.git
-$ cd B2G
+$ cd gaia
 ```
 
 Next we can add an `upstream` remote:
@@ -196,4 +196,30 @@ mobile device"][7].
 
 Working with Gaia is usually easier than building the entire B2G stack.
 
+### Running integration tests
 
+Running integration tests inside the container requires us to use `xvfb` as a
+display server. So you won't actually see a browser running the tests.
+
+You can run integration tests like this:
+
+```bash
+root@hostbox:/gaia# make test-integration
+```
+
+This will run all the integration tests, which will take a long time. More
+typically you'll just want to run some specific tests, which you can do like
+this:
+
+```bash
+root@hostbox:/gaia# TEST_FILES="apps/system/test/marionette/apps_test.js" make test-integration
+
+# ... lots of output ... #
+
+mozApps
+  getSelf
+    ✓ multiple calls should all return
+
+
+1 passing (16s)
+```
