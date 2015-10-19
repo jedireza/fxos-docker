@@ -20,6 +20,7 @@ A development environment for FxOS.
    - [Running unit tests](#running-unit-tests)
      - [The prep work](#the-prep-work)
      - [Multiple ways to run](#multiple-ways-to-run)
+   - [Running build tests](#running-build-tests)
    - [Running UI tests](#running-ui-tests)
 
 
@@ -341,6 +342,27 @@ root@hostbox:/gaia# APP=calendar make test-agent-test
 For more details see the official MDN docs for ["Gaia unit tests"][10].
 
 [10]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_unit_tests
+
+### Running build tests
+
+You can run the build unit tests like this:
+
+```bash
+root@hostbox:/gaia# make build-test-unit
+```
+You can run the build integration tests like this:
+
+```bash
+root@hostbox:/gaia# make build-test-integration
+```
+
+Like we've seen before running all the build integration tests can take some
+time. We can limit which tests to run using the `TEST_FILES` variable like
+this:
+
+```bash
+root@hostbox:/gaia# TEST_FILES="apps/keyboard/test/build/integration/keyboard_test.js" make build-test-integration
+```
 
 ### Running UI tests
 
