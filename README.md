@@ -133,8 +133,9 @@ I found one way of fixing this [by following this StackOverflow answer][8].
 ## Development container
 
 The `jedireza/fxos` Docker image is our build environment. We'll use it to
-configure B2G, build B2G and run Gaia tests. It's based on the Ubuntu Trusty
-(14.04) image with [build prerequisites installed][4].
+configure and build B2G, build Gaia and run tests, as well as flash our device.
+It's based on the Ubuntu Trusty (14.04) image with the [build prerequisites
+installed][4].
 
 [4]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Firefox_OS_build_prerequisites
 
@@ -267,9 +268,9 @@ For more details see the official MDN docs for ["Gaia Integration tests"][9].
 
 #### The prep work
 
-Running integration tests will have automatically installed a local copy of the
-Firefox (aka Mulet) binary in the `/gaia/firefox` directory. If you haven't run
-integration tests you can get a copy of mulet by running:
+If you already ran integration tests you probably already have a local copy of
+the Firefox (aka Mulet) binary in the `/gaia/firefox` directory. If not, you
+can get a copy of Mulet by running:
 
 ```bash
 root@hostbox:/gaia# make mulet
