@@ -121,7 +121,7 @@ Helper Add-on will start a server if there isn't one running and it can't use
 
 ```bash
 $ adb devices
-List of devices attached 
+List of devices attached
 ????????????    no permissions
 ```
 

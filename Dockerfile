@@ -1,12 +1,13 @@
-FROM ubuntu:trusty
+FROM ubuntu:14.04
 
 # the b2g/fxos prereqs
 RUN dpkg --add-architecture i386
+RUN apt-get dist-upgrade
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
     autoconf2.13 bison bzip2 ccache curl flex gawk \
     gcc g++ g++-multilib gcc-4.7 g++-4.7 g++-4.7-multilib \
-    git lib32ncurses5-dev lib32z1-dev libgconf2-dev \
+    git mercurial lib32ncurses5-dev lib32z1-dev libgconf2-dev \
     zlib1g:amd64 zlib1g-dev:amd64 zlib1g:i386 zlib1g-dev:i386 \
     libgl1-mesa-dev libx11-dev make zip libxml2-utils lzop \
     default-jdk wget w3m unzip android-tools-adb xorg openbox \
