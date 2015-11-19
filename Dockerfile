@@ -10,8 +10,8 @@ RUN apt-get install -y --no-install-recommends \
     git mercurial lib32ncurses5-dev lib32z1-dev libgconf2-dev \
     zlib1g:amd64 zlib1g-dev:amd64 zlib1g:i386 zlib1g-dev:i386 \
     libgl1-mesa-dev libx11-dev make zip libxml2-utils lzop \
-    default-jdk wget w3m unzip android-tools-adb xorg openbox \
-    libgtk-3-dev python-pip xvfb
+    default-jdk wget w3m unzip android-tools-adb android-tools-fastboot \
+    xorg openbox libgtk-3-dev python-pip xvfb
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 1 \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 2 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.7 1 \
