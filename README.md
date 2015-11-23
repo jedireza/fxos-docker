@@ -11,6 +11,7 @@ A development environment for FxOS.
    - [`adb` server](#adb-server)
  - [Development container](#development-container)
    - [Interacting](#interacting)
+   - [Connecting visuals](#connecting-visuals)
  - [Working with B2G](#working-with-b2g)
    - [Configure your target](#configure-your-target)
    - [Time to build](#time-to-build)
@@ -168,6 +169,62 @@ this: (where `hostbox` is your machine's name)
 
 ```bash
 root@hostbox:/#
+```
+
+### Connecting visuals
+
+You can also connect your local X11 server to the docker image which allows you
+to see windows running in the container (if any) on your host machine. For
+example you'll see the FxOS Runtime windows open when running integration tests
+and also when starting the unit test runner. A great benefit to this is you're
+able to interact with the windows like they're running on your host machine.
+
+```bash
+$ xhost +
+$ docker run -it --rm \
+    -v ~/projects/B2G:/B2G \
+    -v ~/projects/gaia:/gaia \
+    -v /dev/bus/usb:/dev/bus/usb \
+    -v ~/.ssh:/home/root/.ssh \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    -e UID=$UID \
+    -e GID=$GID \
+    --net=host \
+    jedireza/fxos
+$ xhost -
+```
+
+The `xhost` commands:
+
+ - `xhost +` allows all connections to the host machine's X server. There can
+   be security implications with such broad access.
+ - `xhost -` restricts access to the host machine's X server to only those on
+   the access control list.
+
+Differences from our previous `docker run` example:
+
+ - `-v /tmp/.X11-unix:/tmp/.X11-unix` mounts our X server via a unix domain
+   socket.
+ - `-e DISPLAY=$DISPLAY` sets the `DISPLAY` environment variable to be the same
+   as the host machine.
+ - `-e UID=$UID` sets the `UID` environment variable to be the same as the host
+   machine.
+ - `-e GID=$GID` sets the `GID` environment variable to be the same as the host
+   machine.
+
+Just like before, once you connect, you'll have an interactive terminal that
+looks something like this: (where `hostbox` is your machine's name)
+
+```bash
+root@hostbox:/#
+```
+
+But now you'll see windows open from within the container. You can test this by
+running the FxOS Runtime inside the container like this:
+
+```bash
+root@hostbox:/# /gaia/firefox/firefox-bin
 ```
 
 
