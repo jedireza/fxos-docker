@@ -5,13 +5,47 @@ RUN dpkg --add-architecture i386
 RUN apt-get dist-upgrade
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
-    autoconf2.13 bison bzip2 ccache curl flex gawk \
-    gcc g++ g++-multilib gcc-4.7 g++-4.7 g++-4.7-multilib \
-    git mercurial lib32ncurses5-dev lib32z1-dev libgconf2-dev \
-    zlib1g:amd64 zlib1g-dev:amd64 zlib1g:i386 zlib1g-dev:i386 \
-    libgl1-mesa-dev libx11-dev make zip libxml2-utils lzop \
-    default-jdk wget w3m unzip android-tools-adb android-tools-fastboot \
-    xorg openbox libgtk-3-dev python-pip xvfb
+    autoconf2.13 \
+    bison \
+    bzip2 \
+    ccache \
+    curl \
+    flex \
+    gawk \
+    gcc \
+    g++ \
+    g++-multilib \
+    gcc-4.7 \
+    g++-4.7 \
+    g++-4.7-multilib \
+    clang \
+    git \
+    mercurial \
+    lib32ncurses5-dev \
+    lib32z1-dev \
+    libgconf2-dev \
+    zlib1g:amd64 \
+    zlib1g-dev:amd64 \
+    zlib1g:i386 \
+    zlib1g-dev:i386 \
+    libgl1-mesa-dev \
+    libx11-dev \
+    make \
+    zip \
+    libxml2-utils \
+    lzop \
+    default-jdk \
+    wget \
+    w3m \
+    unzip \
+    android-tools-adb \
+    android-tools-fastboot \
+    xorg \
+    openbox \
+    libgtk-3-dev \
+    libcanberra-gtk3-module \
+    python-pip \
+    xvfb
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 1 \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 2 \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.7 1 \
@@ -24,7 +58,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # nvm: vars used to install nvm and put that version on our path
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 0.12.7
+ENV NODE_VERSION 4.2.2
 
 # nvm: install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash \
