@@ -317,6 +317,14 @@ mozApps
 1 passing (16s)
 ```
 
+You can also run the integration tests for an entire app like this:
+
+```bash
+root@hostbox:/gaia# APP=ftu make test-integration
+
+# ... truncated output ... #
+```
+
 For more details see the official MDN docs for ["Gaia Integration tests"][9].
 
 [9]: https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Automated_testing/Gaia_integration_tests
